@@ -1,8 +1,7 @@
 package com.myorganisation.healhub.controller;
 
-import com.myorganisation.healhub.dto.ServerStatus;
+import com.myorganisation.healhub.dto.ServerStatusResponseDTO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +23,8 @@ public class ServerController {
     }
 
     @GetMapping
-    public ResponseEntity<ServerStatus> checkServerHealth() {
-        ServerStatus serverStatus = new ServerStatus(serverStartTime, applicationName);
-        return new ResponseEntity<>(serverStatus, HttpStatusCode.valueOf(200));
+    public ResponseEntity<ServerStatusResponseDTO> checkServerHealth() {
+        ServerStatusResponseDTO serverStatusResponseDTO = new ServerStatusResponseDTO(serverStartTime, applicationName);
+        return new ResponseEntity<>(serverStatusResponseDTO, HttpStatusCode.valueOf(200));
     }
 }

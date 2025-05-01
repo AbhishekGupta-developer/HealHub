@@ -1,7 +1,7 @@
 package com.myorganisation.healhub.service;
 
-import com.myorganisation.healhub.dto.DoctorInputDto;
-import com.myorganisation.healhub.dto.DoctorOutputDto;
+import com.myorganisation.healhub.dto.DoctorRequestDTO;
+import com.myorganisation.healhub.dto.DoctorResponseDTO;
 import com.myorganisation.healhub.entity.Doctor;
 import com.myorganisation.healhub.enums.Gender;
 import com.myorganisation.healhub.enums.Speciality;
@@ -19,92 +19,92 @@ public class DoctorServiceImpl implements DoctorService {
     DoctorRepository doctorRepository;
 
     @Override
-    public DoctorOutputDto getDoctor(Long id) {
+    public DoctorResponseDTO getDoctor(Long id) {
         Doctor doctor = doctorRepository.findById(id).orElse(null);
 
-        DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        doctorOutputDto.setId(doctor.getId());
-        doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setAge(doctor.getAge());
-        doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setDesignation(doctor.getDesignation());
-        doctorOutputDto.setSpeciality(doctor.getSpeciality());
+        doctorResponseDTO.setId(doctor.getId());
+        doctorResponseDTO.setName(doctor.getName());
+        doctorResponseDTO.setAge(doctor.getAge());
+        doctorResponseDTO.setGender(doctor.getGender());
+        doctorResponseDTO.setDesignation(doctor.getDesignation());
+        doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-        return doctorOutputDto;
+        return doctorResponseDTO;
     }
 
     @Override
-    public List<DoctorOutputDto> getAllDoctors() {
+    public List<DoctorResponseDTO> getAllDoctors() {
 
         List<Doctor> doctorList = new ArrayList<>(doctorRepository.findAll());
 
-        List<DoctorOutputDto> doctorOutputDtoList = new ArrayList<>();
+        List<DoctorResponseDTO> doctorResponseDTOList = new ArrayList<>();
 
         for(Doctor doctor : doctorList) {
 
-            DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+            DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-            doctorOutputDto.setId(doctor.getId());
-            doctorOutputDto.setName(doctor.getName());
-            doctorOutputDto.setAge(doctor.getAge());
-            doctorOutputDto.setGender(doctor.getGender());
-            doctorOutputDto.setDesignation(doctor.getDesignation());
-            doctorOutputDto.setSpeciality(doctor.getSpeciality());
+            doctorResponseDTO.setId(doctor.getId());
+            doctorResponseDTO.setName(doctor.getName());
+            doctorResponseDTO.setAge(doctor.getAge());
+            doctorResponseDTO.setGender(doctor.getGender());
+            doctorResponseDTO.setDesignation(doctor.getDesignation());
+            doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-            doctorOutputDtoList.add(doctorOutputDto);
+            doctorResponseDTOList.add(doctorResponseDTO);
         }
 
-        return doctorOutputDtoList;
+        return doctorResponseDTOList;
     }
 
     @Override
-    public DoctorOutputDto addDoctor(DoctorInputDto doctorInputDto) {
+    public DoctorResponseDTO addDoctor(DoctorRequestDTO doctorRequestDTO) {
         Doctor doctor = new Doctor();
 
-        doctor.setName(doctorInputDto.getName());
-        doctor.setAge(doctorInputDto.getAge());
-        doctor.setGender(doctorInputDto.getGender());
-        doctor.setDesignation(doctorInputDto.getDesignation());
-        doctor.setSpeciality(doctorInputDto.getSpeciality());
+        doctor.setName(doctorRequestDTO.getName());
+        doctor.setAge(doctorRequestDTO.getAge());
+        doctor.setGender(doctorRequestDTO.getGender());
+        doctor.setDesignation(doctorRequestDTO.getDesignation());
+        doctor.setSpeciality(doctorRequestDTO.getSpeciality());
 
         doctor = doctorRepository.save(doctor);
 
-        DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        doctorOutputDto.setId(doctor.getId());
-        doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setAge(doctor.getAge());
-        doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setDesignation(doctor.getDesignation());
-        doctorOutputDto.setSpeciality(doctor.getSpeciality());
+        doctorResponseDTO.setId(doctor.getId());
+        doctorResponseDTO.setName(doctor.getName());
+        doctorResponseDTO.setAge(doctor.getAge());
+        doctorResponseDTO.setGender(doctor.getGender());
+        doctorResponseDTO.setDesignation(doctor.getDesignation());
+        doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-        return doctorOutputDto;
+        return doctorResponseDTO;
     }
 
     @Override
-    public DoctorOutputDto updateDoctor(Long id, DoctorInputDto doctorInputDto) {
+    public DoctorResponseDTO updateDoctor(Long id, DoctorRequestDTO doctorRequestDTO) {
         Doctor doctor = new Doctor();
 
         doctor.setId(id);
-        doctor.setName(doctorInputDto.getName());
-        doctor.setAge(doctorInputDto.getAge());
-        doctor.setGender(doctorInputDto.getGender());
-        doctor.setDesignation(doctorInputDto.getDesignation());
-        doctor.setSpeciality(doctorInputDto.getSpeciality());
+        doctor.setName(doctorRequestDTO.getName());
+        doctor.setAge(doctorRequestDTO.getAge());
+        doctor.setGender(doctorRequestDTO.getGender());
+        doctor.setDesignation(doctorRequestDTO.getDesignation());
+        doctor.setSpeciality(doctorRequestDTO.getSpeciality());
 
         doctor = doctorRepository.save(doctor);
 
-        DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+        DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-        doctorOutputDto.setId(doctor.getId());
-        doctorOutputDto.setName(doctor.getName());
-        doctorOutputDto.setAge(doctor.getAge());
-        doctorOutputDto.setGender(doctor.getGender());
-        doctorOutputDto.setDesignation(doctor.getDesignation());
-        doctorOutputDto.setSpeciality(doctor.getSpeciality());
+        doctorResponseDTO.setId(doctor.getId());
+        doctorResponseDTO.setName(doctor.getName());
+        doctorResponseDTO.setAge(doctor.getAge());
+        doctorResponseDTO.setGender(doctor.getGender());
+        doctorResponseDTO.setDesignation(doctor.getDesignation());
+        doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-        return doctorOutputDto;
+        return doctorResponseDTO;
     }
 
     @Override
@@ -117,45 +117,45 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorOutputDto> search(Gender gender, Speciality speciality) {
+    public List<DoctorResponseDTO> search(Gender gender, Speciality speciality) {
         List<Doctor> doctorList = doctorRepository.findByGenderAndSpeciality(gender, speciality);
-        List<DoctorOutputDto> doctorOutputDtoList = new ArrayList<>();
+        List<DoctorResponseDTO> doctorResponseDTOList = new ArrayList<>();
 
         for(Doctor doctor : doctorList) {
-            DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+            DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-            doctorOutputDto.setId(doctor.getId());
-            doctorOutputDto.setName(doctor.getName());
-            doctorOutputDto.setAge(doctor.getAge());
-            doctorOutputDto.setGender(doctor.getGender());
-            doctorOutputDto.setDesignation(doctor.getDesignation());
-            doctorOutputDto.setSpeciality(doctor.getSpeciality());
+            doctorResponseDTO.setId(doctor.getId());
+            doctorResponseDTO.setName(doctor.getName());
+            doctorResponseDTO.setAge(doctor.getAge());
+            doctorResponseDTO.setGender(doctor.getGender());
+            doctorResponseDTO.setDesignation(doctor.getDesignation());
+            doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-            doctorOutputDtoList.add(doctorOutputDto);
+            doctorResponseDTOList.add(doctorResponseDTO);
         }
 
-        return doctorOutputDtoList;
+        return doctorResponseDTOList;
     }
 
     @Override
-    public List<DoctorOutputDto> search(Speciality speciality) {
+    public List<DoctorResponseDTO> search(Speciality speciality) {
         List<Doctor> doctorList = doctorRepository.findBySpeciality(speciality);
-        List<DoctorOutputDto> doctorOutputDtoList = new ArrayList<>();
+        List<DoctorResponseDTO> doctorResponseDTOList = new ArrayList<>();
 
         for(Doctor doctor : doctorList) {
-            DoctorOutputDto doctorOutputDto = new DoctorOutputDto();
+            DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
 
-            doctorOutputDto.setId(doctor.getId());
-            doctorOutputDto.setName(doctor.getName());
-            doctorOutputDto.setAge(doctor.getAge());
-            doctorOutputDto.setGender(doctor.getGender());
-            doctorOutputDto.setDesignation(doctor.getDesignation());
-            doctorOutputDto.setSpeciality(doctor.getSpeciality());
+            doctorResponseDTO.setId(doctor.getId());
+            doctorResponseDTO.setName(doctor.getName());
+            doctorResponseDTO.setAge(doctor.getAge());
+            doctorResponseDTO.setGender(doctor.getGender());
+            doctorResponseDTO.setDesignation(doctor.getDesignation());
+            doctorResponseDTO.setSpeciality(doctor.getSpeciality());
 
-            doctorOutputDtoList.add(doctorOutputDto);
+            doctorResponseDTOList.add(doctorResponseDTO);
         }
 
-        return doctorOutputDtoList;
+        return doctorResponseDTOList;
     }
 
 }

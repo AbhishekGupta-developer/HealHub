@@ -1,7 +1,7 @@
 package com.myorganisation.healhub.service;
 
-import com.myorganisation.healhub.dto.PatientInputDto;
-import com.myorganisation.healhub.dto.PatientOutputDto;
+import com.myorganisation.healhub.dto.PatientRequestDTO;
+import com.myorganisation.healhub.dto.PatientResponseDTO;
 import com.myorganisation.healhub.entity.Bill;
 import com.myorganisation.healhub.entity.Patient;
 import com.myorganisation.healhub.repository.BillRepository;
@@ -22,13 +22,13 @@ public class PatientServiceImpl implements PatientService {
     BillRepository billRepository;
 
     @Override
-    public PatientOutputDto addPatient(PatientInputDto patientInputDto) {
+    public PatientResponseDTO addPatient(PatientRequestDTO patientRequestDTO) {
         Patient patient = new Patient();
 
-        patient.setName(patientInputDto.getName());
-        patient.setAge(patientInputDto.getAge());
-        patient.setGender(patientInputDto.getGender());
-        patient.setDisease(patientInputDto.getDisease());
+        patient.setName(patientRequestDTO.getName());
+        patient.setAge(patientRequestDTO.getAge());
+        patient.setGender(patientRequestDTO.getGender());
+        patient.setDisease(patientRequestDTO.getDisease());
 
         Bill bill = new Bill();
 
@@ -44,77 +44,77 @@ public class PatientServiceImpl implements PatientService {
 //
 //        billRepository.save(bill); //old code
 
-        PatientOutputDto patientOutputDto = new PatientOutputDto();
+        PatientResponseDTO patientResponseDTO = new PatientResponseDTO();
 
-        patientOutputDto.setId(patient.getId());
-        patientOutputDto.setName(patient.getName());
-        patientOutputDto.setAge(patient.getAge());
-        patientOutputDto.setGender(patient.getGender());
-        patientOutputDto.setDisease(patient.getDisease());
-        patientOutputDto.setBill(patient.getBill());
+        patientResponseDTO.setId(patient.getId());
+        patientResponseDTO.setName(patient.getName());
+        patientResponseDTO.setAge(patient.getAge());
+        patientResponseDTO.setGender(patient.getGender());
+        patientResponseDTO.setDisease(patient.getDisease());
+        patientResponseDTO.setBill(patient.getBill());
 
-        return patientOutputDto;
+        return patientResponseDTO;
     }
 
     @Override
-    public PatientOutputDto getPatient(Long id) {
+    public PatientResponseDTO getPatient(Long id) {
         Patient patient = patientRepository.findById(id).orElse(null);
 
-        PatientOutputDto patientOutputDto = new PatientOutputDto();
+        PatientResponseDTO patientResponseDTO = new PatientResponseDTO();
 
-        patientOutputDto.setId(patient.getId());
-        patientOutputDto.setName(patient.getName());
-        patientOutputDto.setAge(patient.getAge());
-        patientOutputDto.setGender(patient.getGender());
-        patientOutputDto.setDisease(patient.getDisease());
-        patientOutputDto.setBill(patient.getBill());
+        patientResponseDTO.setId(patient.getId());
+        patientResponseDTO.setName(patient.getName());
+        patientResponseDTO.setAge(patient.getAge());
+        patientResponseDTO.setGender(patient.getGender());
+        patientResponseDTO.setDisease(patient.getDisease());
+        patientResponseDTO.setBill(patient.getBill());
 
-        return patientOutputDto;
+        return patientResponseDTO;
     }
 
     @Override
-    public List<PatientOutputDto> getAllPatients() {
+    public List<PatientResponseDTO> getAllPatients() {
         List<Patient> patientList = new ArrayList<>(patientRepository.findAll());
 
-        List<PatientOutputDto> patientOutputDtoList = new ArrayList<>();
+        List<PatientResponseDTO> patientResponseDTOList = new ArrayList<>();
 
         for(Patient patient : patientList) {
-            PatientOutputDto patientOutputDto = new PatientOutputDto();
+            PatientResponseDTO patientResponseDTO = new PatientResponseDTO();
 
-            patientOutputDto.setId(patient.getId());
-            patientOutputDto.setName(patient.getName());
-            patientOutputDto.setAge(patient.getAge());
-            patientOutputDto.setGender(patient.getGender());
-            patientOutputDto.setDisease(patient.getDisease());
-            patientOutputDto.setBill(patient.getBill());
+            patientResponseDTO.setId(patient.getId());
+            patientResponseDTO.setName(patient.getName());
+            patientResponseDTO.setAge(patient.getAge());
+            patientResponseDTO.setGender(patient.getGender());
+            patientResponseDTO.setDisease(patient.getDisease());
+            patientResponseDTO.setBill(patient.getBill());
 
-            patientOutputDtoList.add(patientOutputDto);
+            patientResponseDTOList.add(patientResponseDTO);
         }
 
-        return patientOutputDtoList;
+        return patientResponseDTOList;
     }
 
     @Override
-    public PatientOutputDto updatePatient(Long id, PatientInputDto patientInputDto) {
+    public PatientResponseDTO updatePatient(Long id, PatientRequestDTO patientRequestDTO) {
         Patient patient = patientRepository.findById(id).orElse(null);
 
-        patient.setName(patientInputDto.getName());
-        patient.setAge(patientInputDto.getAge());
-        patient.setGender(patientInputDto.getGender());
-        patient.setDisease(patientInputDto.getDisease());
+        patient.setName(patientRequestDTO.getName());
+        patient.setAge(patientRequestDTO.getAge());
+        patient.setGender(patientRequestDTO.getGender());
+        patient.setDisease(patientRequestDTO.getDisease());
 
         patient = patientRepository.save(patient);
 
-        PatientOutputDto patientOutputDto = new PatientOutputDto();
+        PatientResponseDTO patientResponseDTO = new PatientResponseDTO();
 
-        patientOutputDto.setId(id);
-        patientOutputDto.setName(patient.getName());
-        patientOutputDto.setAge(patient.getAge());
-        patientOutputDto.setGender(patient.getGender());
-        patientOutputDto.setDisease(patient.getDisease());
-        patientOutputDto.setBill(patient.getBill());
+        patientResponseDTO.setId(id);
+        patientResponseDTO.setName(patient.getName());
+        patientResponseDTO.setAge(patient.getAge());
+        patientResponseDTO.setGender(patient.getGender());
+        patientResponseDTO.setDisease(patient.getDisease());
+        patientResponseDTO.setBill(patient.getBill());
 
-        return patientOutputDto;
+        return patientResponseDTO;
     }
 
     @Override

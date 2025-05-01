@@ -5,7 +5,7 @@ import com.myorganisation.healhub.enums.Speciality;
 import lombok.Data;
 
 @Data
-public class DoctorInputDto {
+public class DoctorRequestDTO {
     private String name;
     private Integer age;
     private Gender gender;
